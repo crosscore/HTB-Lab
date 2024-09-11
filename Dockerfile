@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     vim \
     tmux \
+    openvpn \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
