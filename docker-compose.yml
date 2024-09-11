@@ -1,0 +1,20 @@
+services:
+  htb-lab:
+    build: .
+    container_name: htb-lab
+    volumes:
+      - ./workspace:/root/htb
+    ports:
+      - "8080:8080"
+    tty: true
+    stdin_open: true
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - htb_network
+    security_opt:
+      - seccomp:unconfined
+
+networks:
+  htb_network:
+    driver: bridge
