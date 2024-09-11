@@ -1,4 +1,4 @@
-FROM kalilinux/kali-linux-docker:latest
+FROM kalilinux/kali-rolling:latest
 
 # Update and install additional tools not included in the base image
 RUN apt-get update && apt-get install -y \
