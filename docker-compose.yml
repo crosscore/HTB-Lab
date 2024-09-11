@@ -4,16 +4,26 @@ services:
     container_name: htb-lab
     volumes:
       - ./workspace:/root/htb
+      - /dev/net/tun:/dev/net/tun
     ports:
       - "8080:8080"
-    tty: true
-    stdin_open: true
     cap_add:
       - NET_ADMIN
-    networks:
-      - htb_network
+      - SYS_ADMIN
+    devices:
+      - /dev/net/tun
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
     security_opt:
       - seccomp:unconfined
+    networks:
+      - htb_network
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
+    tty: true
+    stdin_open: true
+    command: tail -f /dev/null
 
 networks:
   htb_network:
